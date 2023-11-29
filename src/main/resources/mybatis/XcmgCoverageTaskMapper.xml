@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcmg.jacocoservice.mapper.XcmgCoverageTaskMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xcmg.jacocoservice.model.XcmgCoverageTaskDO">
+        <result column="id" property="id" />
+        <result column="task_status" property="taskStatus" />
+        <result column="report_url" property="reportUrl" />
+        <result column="start_time" property="startTime" />
+        <result column="finish_time" property="finishTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, task_status, report_url, start_time, finish_time
+    </sql>
+
+</mapper>

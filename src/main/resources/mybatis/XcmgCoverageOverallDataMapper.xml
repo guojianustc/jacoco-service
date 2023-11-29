@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcmg.jacocoservice.mapper.XcmgCoverageOverallDataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xcmg.jacocoservice.model.XcmgCoverageOverallDataDO">
+        <id column="id" property="id" />
+        <result column="task_id" property="taskId" />
+        <result column="missed_instructions" property="missedInstructions" />
+        <result column="all_instructions" property="allInstructions" />
+        <result column="missed_branches" property="missedBranches" />
+        <result column="all_branches" property="allBranches" />
+        <result column="missed_cxty" property="missedCxty" />
+        <result column="all_cxty" property="allCxty" />
+        <result column="missed_methods" property="missedMethods" />
+        <result column="all_methods" property="allMethods" />
+        <result column="missed_lines" property="missedLines" />
+        <result column="all_lines" property="allLines" />
+        <result column="missed_classes" property="missedClasses" />
+        <result column="all_classes" property="allClasses" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, task_id, missed_instructions, all_instructions, missed_branches, all_branches, missed_cxty, all_cxty, missed_methods, all_methods, missed_lines, all_lines, missed_classes, all_classes
+    </sql>
+
+</mapper>
