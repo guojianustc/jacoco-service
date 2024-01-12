@@ -21,4 +21,7 @@ public interface XcmgCoverageTaskService extends IService<XcmgCoverageTaskDO> {
     public ResponseBean startdump(XcmgCodeProjectDO xcmgCodeProjectDO) throws IOException;
     public List<XcmgCoverageTaskDO> gettaskByProject(String projectId);
 
+    public Boolean mergeReport(XcmgCodeProjectDO xcmgCodeProjectDO);
+
+
 }

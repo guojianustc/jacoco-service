@@ -30,10 +30,12 @@ public class XcmgCoverageTaskController {
     @Autowired
     XcmgCoverageTaskService coverageTaskService;
     @Autowired
-    JacocoTestService JasocoTestService;
+    JacocoTestService jasocoTestService;
     @PostMapping("/startdump")
     public ResponseBean startdump(@RequestBody XcmgCodeProjectDO xcmgCodeProjectDO) throws IOException {
-        return coverageTaskService.startdump(xcmgCodeProjectDO);
+        coverageTaskService.startdump(xcmgCodeProjectDO);
+        coverageTaskService.mergeReport(xcmgCodeProjectDO);
+        return ResponseBean.success("成功生成报告");
     }
 
     @GetMapping("/task/list")
@@ -44,8 +46,18 @@ public class XcmgCoverageTaskController {
     public ResponseBean savedata() throws IOException {
         String taskId = "60e7a84c-cb47-4ad6-b8f5-7f9543425bd2";
         String reportPath = HOME_PATH + "/jacoco/" + taskId + "/" + REPORT_PATH;
-        JasocoTestService.parseReportData(taskId,reportPath);
+        jasocoTestService.parseReportData(taskId,reportPath);
         return ResponseBean.success(coverageTaskService.gettaskByProject(taskId));
     }
+
+    @GetMapping("/task/merge")
+    public ResponseBean mergeDumpFile(String projectId) throws IOException {
+        jasocoTestService.mergeDumpFile(projectId);
+        return ResponseBean.success("Success");
+
+    }
+
+
+
 }
 

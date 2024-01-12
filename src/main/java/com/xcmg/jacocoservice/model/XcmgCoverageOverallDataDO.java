@@ -98,5 +98,11 @@ public class XcmgCoverageOverallDataDO implements Serializable {
     @TableField("all_classes")
     private Integer allClasses;
 
+    /**
+     * 项目id
+     */
+    @TableField("project_id")
+    private String projectId;
+
 
 }

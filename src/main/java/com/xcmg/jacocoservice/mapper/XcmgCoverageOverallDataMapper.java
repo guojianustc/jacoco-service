@@ -15,4 +15,7 @@ import org.apache.ibatis.annotations.Select;
 public interface XcmgCoverageOverallDataMapper extends BaseMapper<XcmgCoverageOverallDataDO> {
     @Select("SELECT * FROM xcmg_coverage_overall_data WHERE task_id = #{taskId}")
     XcmgCoverageOverallDataDO selectByTaskId(String taskId);
+
+    @Select("SELECT * FROM xcmg_coverage_overall_data WHERE project_id = #{projectId}")
+    XcmgCoverageOverallDataDO selectByProjectId(String projectId);
 }

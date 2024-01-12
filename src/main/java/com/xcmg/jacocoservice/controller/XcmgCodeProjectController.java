@@ -27,7 +27,6 @@ public class XcmgCodeProjectController {
     XcmgCodeProjectService xcmgCodeProjectService;
     @GetMapping("/project/list")
     public ResponseBean getlist(){
-        return ResponseBean.success(xcmgCodeProjectService.list());
+        return ResponseBean.success(xcmgCodeProjectService.getAllProjects());
     }
 }
-

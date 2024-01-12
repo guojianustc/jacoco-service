@@ -7,6 +7,7 @@ import com.xcmg.jacocoservice.model.XcmgCodeProjectDO;
 import com.xcmg.jacocoservice.model.XcmgCoverageTaskDO;
 import com.xcmg.jacocoservice.mapper.XcmgCoverageTaskMapper;
 import com.xcmg.jacocoservice.service.JacocoTestService;
+import com.xcmg.jacocoservice.service.XcmgCodeProjectService;
 import com.xcmg.jacocoservice.service.XcmgCoverageTaskService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,20 @@ public class XcmgCoverageTaskServiceImpl extends ServiceImpl<XcmgCoverageTaskMap
         return result;
     }
 
+    @Override
+    public Boolean mergeReport(XcmgCodeProjectDO xcmgCodeProjectDO) {
+        try {
+            jacocoTestService.mergeDumpFile(xcmgCodeProjectDO.getId());
+            String execFilePath = HOME_PATH + "/jacoco/mergeFile/" + xcmgCodeProjectDO.getId() + "/" + MERGE_FILE_NAME;
+            String reportPath = HOME_PATH + "/jacoco/mergeFile/" + xcmgCodeProjectDO.getId() + "/report";
+            jacocoTestService.reportGenerator(xcmgCodeProjectDO, execFilePath, reportPath);
+            jacocoTestService.parseMergeReportData(xcmgCodeProjectDO.getId(),reportPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
     public String getNowDate() {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -97,5 +112,6 @@ public class XcmgCoverageTaskServiceImpl extends ServiceImpl<XcmgCoverageTaskMap
         String dateString = formatter.format(currentTime);
         return dateString;
     }
+
 
 }

@@ -63,5 +63,7 @@ public class XcmgCodeProjectDO implements Serializable {
     @TableField("update_time")
     private Date updateTime;
 
+    @TableField(exist = false)
+    private XcmgCoverageOverallDataDO coverData;
 
 }
