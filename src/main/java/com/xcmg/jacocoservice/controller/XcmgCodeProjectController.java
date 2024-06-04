@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.List;
 
 /**
@@ -26,7 +28,7 @@ public class XcmgCodeProjectController {
     @Autowired
     XcmgCodeProjectService xcmgCodeProjectService;
     @GetMapping("/project/list")
-    public ResponseBean getlist(){
+    public ResponseBean getlist() throws SocketException, UnknownHostException {
         return ResponseBean.success(xcmgCodeProjectService.getAllProjects());
     }
 }

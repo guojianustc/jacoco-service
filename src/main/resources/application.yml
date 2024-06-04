@@ -15,3 +15,8 @@ mybatis-plus:
   mapper-locations: classpath:mybatis/*.xml
 server:
   port: 8081
+
+
+git:
+  username: gj
+  password: 88173615

@@ -1,9 +1,11 @@
 package com.xcmg.jacocoservice.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,7 +23,7 @@ import lombok.EqualsAndHashCode;
 @TableName("xcmg_code_project")
 public class XcmgCodeProjectDO implements Serializable {
 
-
+//   @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
     @TableField("project_name")
@@ -65,5 +67,8 @@ public class XcmgCodeProjectDO implements Serializable {
 
     @TableField(exist = false)
     private XcmgCoverageOverallDataDO coverData;
+
+    @TableField(exist = false)
+    private String overAllReport;
 
 }

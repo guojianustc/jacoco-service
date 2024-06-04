@@ -1,6 +1,7 @@
 package com.xcmg.jacocoservice.service;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xcmg.jacocoservice.model.XcmgCodeProjectDO;
 import com.xcmg.jacocoservice.model.XcmgCoverageOverallDataDO;
 import com.xcmg.jacocoservice.model.XcmgCoverageTaskDO;
@@ -27,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import static com.xcmg.jacocoservice.constants.DumpConstants.*;
@@ -229,7 +231,14 @@ public class JacocoTestService {
             xcmgCoverageOverallDataDO.setAllClasses(allClasses);
             //关联到报告
             xcmgCoverageOverallDataDO.setProjectId(projectId);
-            xcmgCoverageOverallDataDO.setId(String.valueOf(UUID.randomUUID()));
+            QueryWrapper<XcmgCoverageOverallDataDO> wrapper = new QueryWrapper<>();
+            wrapper.lambda().eq(!projectId.isEmpty(), XcmgCoverageOverallDataDO::getProjectId, projectId);
+            XcmgCoverageOverallDataDO dataExist = xcmgCoverageOverallDataService.getOne(wrapper);
+            if (!Objects.isNull(dataExist)) {
+                xcmgCoverageOverallDataDO.setId(dataExist.getId());
+            }else {
+                xcmgCoverageOverallDataDO.setId(String.valueOf(UUID.randomUUID()));
+            }
             xcmgCoverageOverallDataService.saveOrUpdate(xcmgCoverageOverallDataDO);
         } catch (Exception e) {
             return false;

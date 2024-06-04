@@ -3,6 +3,8 @@ package com.xcmg.jacocoservice.service;
 import com.xcmg.jacocoservice.model.XcmgCodeProjectDO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.List;
 
 /**
@@ -14,5 +16,5 @@ import java.util.List;
  * @since 2023-09-21
  */
 public interface XcmgCodeProjectService extends IService<XcmgCodeProjectDO> {
-    List<XcmgCodeProjectDO> getAllProjects();
+    List<XcmgCodeProjectDO> getAllProjects() throws UnknownHostException, SocketException;
 }
